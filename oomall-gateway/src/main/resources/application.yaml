@@ -185,11 +185,14 @@ spring:
           uri: lb://g12service
           predicates:
             - Path=/skus/states,/skus,/skus/{id},/categories/{id}/subcategories,/spus/{id},/brands
+          filters:
+            - PrefixPath=/goods
         - id: goods
           uri: lb://g12service
           predicates:
             - Path=/share/{sid}/skus/{id}
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: time
@@ -205,49 +208,64 @@ spring:
           predicates:
             - Method=GET
             - Path=/timesegments/{id}/flashsales,/flashsales/current
+          filters:
+            - PrefixPath=/goods
 
         - id: commentWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/comments/states,/skus/{id}/comments
+          filters:
+            - PrefixPath=/goods
         - id: comment
           uri: lb://g12service
           predicates:
             - Path=/comments,/orderitems/{id}/comments
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: couponWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/coupons/states,/couponactivities,/couponactivities/{id}/skus
+          filters:
+            - PrefixPath=/goods
         - id: coupon
           uri: lb://g12service
           predicates:
             - Path=/coupons,/couponactivities/{id}/usercoupons
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: presaleWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/presales/states,/presales
+          filters:
+            - PrefixPath=/goods
 
         - id: grouponWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/groupons/states
+          filters:
+            - PrefixPath=/goods
         - id: groupon
           uri: lb://g12service
           predicates:
             - Path=/groupons
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: shopWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/shops/states
+          filters:
+            - PrefixPath=/goods
 
   redis:
     # Redis服务器地址

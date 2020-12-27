@@ -206,73 +206,99 @@ spring:
           uri: lb://g12service
           predicates:
             - Path=/skus/states
+          filters:
+            - PrefixPath=/goods
         - id: goods
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/spus/{id}/skus,/shops/{shopid}/skus/{id}/uploadImg,/shops/{shopid}/skus/{id},/shops/{shopid}/categories/{id},/shops/{shopid}/categories/{id}/subcategories,/shops/{shopid}/spus,/shops/{shopid}/spus/{id},/shops/{shopid}/skus/{id}/onshelves,/shops/{shopid}/skus/{id}/offshelves,/shops/{shopid}/skus/{id}/floatPrices,/shops/{shopid}/floatPrices/{id},/shops/{shopid}/brands,/shops/{shopid}/brands/{id}/uploadImg,/shops/{shopid}/brands/{id},/shops/{shopid}/spus/{spuId}/categories/{id},/shops/{shopid}/spus/{spuId}/brands/{id},/shops/{shopid}/offshelves,/shops/{shopid}/onshelves
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
+        #        - id: flashsaleWithoutToken
+        #          uri: lb://g12service
+        #          predicates:
+        #            - Method=GET
+        #            - Path=/timesegments/{id}/flashsales,/flashsales/current
+        #          filters:
+        #            - PrefixPath=/goods
         - id: flashsale
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/timesegments/{id}/flashsales,/shops/{shopid}/flashsales/{id},/shops/{shopid}/flashsales/{id}/onshelves,/shops/{shopid}/flashsales/{id}/offshelves,/shops/{shopid}/flashsales/{id}/flashitems,/shops/{shopid}/flashsales/{fid}/flashitems/{id}
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: commentWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/comments/states
+          filters:
+            - PrefixPath=/goods
         - id: comment
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/comments/{id}/confirm,/shops/{shopid}/comments/all
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: couponWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/coupons/states
+          filters:
+            - PrefixPath=/goods
         - id: coupon
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/couponactivities,/shops/{shopid}/couponactivities/{id}/uploadImg,/shops/{shopid}/couponactivities/invalid,/shops/{shopid}/couponactivities/{id},/shops/{shopid}/couponactivities/{id}/skus,/shops/{shopid}/couponskus/{id},/shops/{shopid}/couponactivities/{id}/onshelves,/shops/{shopid}/couponactivities/{id}/offshelves
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: presaleWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/presales/states
+          filters:
+            - PrefixPath=/goods
         - id: presale
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/presales,/shops/{shopid}/skus/{id}/presales,/shops/{shopid}/presales/{id},/shops/{shopid}/presales/{id}/onshelves,/shops/{shopid}/presales/{id}/offshelves
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: grouponWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/groupons/states
+          filters:
+            - PrefixPath=/goods
         - id: groupon
           uri: lb://g12service
           predicates:
             - Path=/shops/{shopid}/groupons,/shops/{shopid}/groupons/{id},/shops/{shopid}/spus/{id}/groupons,/shops/{shopid}/groupons/{id}/onshelves,/shops/{shopid}/groupons/{id}/offshelves
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: shopWithoutToken
           uri: lb://g12service
           predicates:
             - Path=/shops/states
+          filters:
+            - PrefixPath=/goods
         - id: shop
           uri: lb://g12service
           predicates:
             - Path=/shops,/shops/{id},/shops/{shopid}/newshops/{id}/audit,/shops/{id}/onshelves,/shops/{id}/offshelves
           filters:
+            - PrefixPath=/goods
             - Auth=authorization
 
         - id: log
