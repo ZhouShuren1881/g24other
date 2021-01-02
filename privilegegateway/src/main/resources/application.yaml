@@ -282,7 +282,7 @@ spring:
         - id: groupon
           uri: lb://g12service
           predicates:
-            - Path=/shops/{shopid}/groupons,/shops/{shopid}/groupons/{id},/shops/{shopid}/spus/{id}/groupons,/shops/{shopid}/groupons/{id}/onshelves,/shops/{shopid}/groupons/{id}/offshelves
+            - Path=/shops/{shopid}/groupons,/shops/{shopid}/groupons/{id},/shops/{shopid}/spus/{id}/groupons,/shops/{shopid}/groupons/{id}/onshelves,/shops/{shopid}/groupons/{id}/offshelves,/goods/shops/{shopid}/groupons/{id}
           filters:
             - PrefixPath=/goods
             - Auth=authorization
@@ -308,14 +308,6 @@ spring:
           filters:
             - PrefixPath=/other
             - Auth=authorization
-
-        - id: shopXiangSuXiang
-            uri: lb://g12service
-            predicates:
-              - Path=/goods/shops/1/groupons/1
-            filters:
-              - PrefixPath=/goods
-              - Auth=authorization
 
   redis:
     # Redis服务器地址
