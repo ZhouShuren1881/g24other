@@ -309,6 +309,14 @@ spring:
             - PrefixPath=/other
             - Auth=authorization
 
+        - id: shopXiangSuXiang
+            uri: lb://g12service
+            predicates:
+              - Path=/goods/shops/1/groupons/1
+            filters:
+              - PrefixPath=/goods
+              - Auth=authorization
+
   redis:
     # Redis服务器地址
     host: localhost
